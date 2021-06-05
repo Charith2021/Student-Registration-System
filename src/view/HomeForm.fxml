@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXRippler?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="328.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeFormController">
+    <children>
+
+        <AnchorPane fx:id="pneAddNewStudent" onKeyPressed="#rprSearchStudents_OnKeyPressed" onKeyReleased="#pneAddNewStudent_OnKeyRelease" onMouseClicked="#pneAddNewStudent_OnMouseClicked" prefHeight="200.0" prefWidth="200.0" styleClass="menu">
+            <children>
+                <ImageView fitHeight="95.0" fitWidth="62.0" layoutX="8.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../asset/Student%20Registration.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="73.0" layoutY="14.0" prefHeight="29.0" prefWidth="224.0" text="Add new student">
+                    <font>
+                        <Font name="System Bold" size="23.0" />
+                    </font>
+                </Label>
+                <Label layoutX="85.0" layoutY="44.0" text="Click  to add a new student" />
+            </children>
+        </AnchorPane>
+
+        <AnchorPane fx:id="pneSearchStudents" onKeyPressed="#rprAddNewStudent_OnKeyPressed" onKeyReleased="#pneSearchStudents_OnKeyRelease" onMouseClicked="#pneSearchStudents_OnMouseClicked" prefHeight="200.0" prefWidth="200.0" styleClass="menu">
+            <children>
+                <ImageView fitHeight="47.0" fitWidth="51.0" layoutX="8.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../asset/Search%20Client.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="73.0" layoutY="14.0" prefHeight="29.0" prefWidth="224.0" text="Search Students">
+                    <font>
+                        <Font name="System Bold" size="23.0" />
+                    </font>
+                </Label>
+                <Label layoutX="85.0" layoutY="44.0" text="Search,edit,delete students" />
+            </children>
+        </AnchorPane>
+        <Label layoutX="37.0" layoutY="36.0" text="    Student Management System">
+            <font>
+                <Font name="System Bold" size="26.0" />
+            </font>
+        </Label>
+        <JFXRippler fx:id="rprAddNewStudent" layoutX="152.0" layoutY="113.0" prefHeight="76.0" prefWidth="309.0" />
+        <JFXRippler fx:id="rprSearchStudents" layoutX="159.0" layoutY="202.0" prefHeight="76.0" prefWidth="309.0" AnchorPane.bottomAnchor="45.0" AnchorPane.topAnchor="202.0" />
+        <Label layoutX="137.0" layoutY="301.0" text="Copyrights © 2021 DEP 7 All rights reserved">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+        </Label>
+    </children>
+</AnchorPane>
