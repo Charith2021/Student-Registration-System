@@ -24,12 +24,13 @@ public class MainFormController {
 
     public ImageView imgMinimize;
     public ImageView imgClose;
+    public ImageView imgNavv;
     public AnchorPane pneAppBar;
     public Label lblTitle;
     public AnchorPane pneStage;
-    public ImageView imgNav;
     private double xMousePos;
     private double yMousePos;
+    private  int icon = NAV_ICON_NONE;
 
 
     public void initialize() throws IOException {
@@ -39,6 +40,26 @@ public class MainFormController {
     public  void  navigate(String title,String url,int icon){
 
         try {
+            imgNavv.setVisible(true);
+            this.icon=icon;   ///methanin set karana icon eka uda hadapu variable(icon) eka athulata da gattha
+            switch (icon){
+                case  NAV_ICON_NONE:
+                    imgNavv.setVisible(false);
+                    imgNavv.setUserData(null);  //danata hover ekak tyanam eka ayn krala danawa
+                    break;
+                case NAV_ICON_HOME:
+                    imgNavv.setImage(new Image("/asset/icons/home white.png"));
+                    imgNavv.setUserData(new Image("/asset/icons/home.png"));
+                    break;
+                case NAV_ICON_BACK:
+                    imgNavv.setImage(new Image("/asset/icons/arrow white.png"));
+                    imgNavv.setUserData(new Image("/asset/icons/arrow_back.png"));
+                break;
+            }
+
+
+
+
           Parent  root = FXMLLoader.load(this.getClass().getResource(url));
             pneStage.getChildren().clear();
             pneStage.getChildren().add(root);
@@ -61,7 +82,7 @@ public class MainFormController {
 
     public void initWindow() {
         lblTitle.setMouseTransparent(true);
-        //imgNav.setVisible(false);
+        imgNavv.setVisible(false);
         Platform.runLater(() -> lblTitle.setText(((Stage) (imgClose.getScene().getWindow())).getTitle()));
         pneAppBar.setOnMousePressed(event -> {
             xMousePos = event.getX();
@@ -81,6 +102,17 @@ public class MainFormController {
             }
         });
 
+        imgNavv.setOnMouseEntered(event -> {
+           swapNavIcon();
+
+        });
+
+        imgNavv.setOnMouseExited(event -> {
+            swapNavIcon();
+        });
+
+
+
         imgClose.setOnMouseEntered(event -> imgClose.setImage(new Image("asset/icons/close.png")));
         imgClose.setOnMouseExited(event -> imgClose.setImage(new Image("asset/icons/close-1.png")));
         imgClose.setOnMouseClicked(event -> System.exit(0));
@@ -92,5 +124,11 @@ public class MainFormController {
         imgMinimize.setOnMouseClicked(event -> ((Stage) (imgMinimize.getScene().getWindow())).setIconified(true));
     }
 
-
+    private void swapNavIcon() {
+        if(icon != NAV_ICON_NONE){
+            Image temp= imgNavv.getImage();
+            imgNavv.setImage((Image) imgNavv.getUserData());
+            imgNavv.setUserData(temp);     //mouse eka gatthama ayeth white wenna
+        }
+    }
 }
