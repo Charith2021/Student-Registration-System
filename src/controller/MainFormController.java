@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import util.NavActionListener;
 
 import java.io.IOException;
 
@@ -31,17 +32,25 @@ public class MainFormController {
     private double xMousePos;
     private double yMousePos;
     private  int icon = NAV_ICON_NONE;
+    private NavActionListener navActionListener=null;  //by default it is null
 
 
     public void initialize() throws IOException {
         initWindow();
     }
 
-    public  void  navigate(String title,String url,int icon){
+    public void navigate(String title,String url,int icon){
+        navigate(title,url,icon,null);
+    }
+
+
+
+    public  void  navigate(String title,String url,int icon,NavActionListener navActionListener){
 
         try {
             imgNavv.setVisible(true);
             this.icon=icon;   ///methanin set karana icon eka uda hadapu variable(icon) eka athulata da gattha
+            this.navActionListener=navActionListener;
             switch (icon){
                 case  NAV_ICON_NONE:
                     imgNavv.setVisible(false);
@@ -102,13 +111,12 @@ public class MainFormController {
             }
         });
 
-        imgNavv.setOnMouseEntered(event -> {
-           swapNavIcon();
-
-        });
-
-        imgNavv.setOnMouseExited(event -> {
-            swapNavIcon();
+        imgNavv.setOnMouseEntered(event -> swapNavIcon());
+        imgNavv.setOnMouseExited(event -> swapNavIcon());
+        imgNavv.setOnMouseClicked(event -> {
+            if(navActionListener !=null){
+                navActionListener.handle();
+            }
         });
 
 

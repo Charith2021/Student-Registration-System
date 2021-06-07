@@ -1,8 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 
 <AnchorPane prefHeight="616.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StudentFormController">
-
+   <children>
+      <Label layoutX="236.0" layoutY="31.0" text="Add new Student">
+         <font>
+            <Font name="Ubuntu Bold" size="24.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="48.0" fitWidth="48.0" layoutX="178.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../asset/Student%20Registration.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="151.0" layoutY="137.0" prefHeight="46.0" prefWidth="300.0">
+         <children>
+            <TextField fx:id="txtNIC" accessibleText="NIC" prefHeight="26.0" prefWidth="290.0" promptText="e.g. 963354927v" style="-fx-background-color: white;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="20.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane accessibleText="Full Name" layoutX="150.0" layoutY="244.0" prefHeight="46.0" prefWidth="300.0">
+         <children>
+            <TextField fx:id="txtFullName" accessibleText="NIC" prefHeight="26.0" prefWidth="248.0" promptText="e.g. Nipun Perera" style="-fx-background-color: lightblue;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="20.0" />
+         </children>
+      </AnchorPane>
+   </children>
 </AnchorPane>
