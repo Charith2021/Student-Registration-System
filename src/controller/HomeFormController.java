@@ -12,6 +12,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import util.AppBarIcon;
 import util.NavActionListener;
 
 import java.io.IOException;
@@ -31,11 +32,7 @@ public class HomeFormController {
         rprSearchStudents.setControl(pneSearchStudents);
         pneAddNewStudent.setFocusTraversable(true);
         pneSearchStudents.setFocusTraversable(true);
-
-
-
     }
-
 
 
     public void rprSearchStudents_OnKeyPressed(KeyEvent keyEvent) {
@@ -80,16 +77,6 @@ public class HomeFormController {
     public  void navigateaction(String title,String url){
 
         MainFormController ctrl = (MainFormController) pneSearchStudents.getScene().getUserData();
-        ctrl.navigate(title, url, MainFormController.NAV_ICON_BACK, new NavActionListener() {
-            @Override
-            public void handle() {
-                ctrl.navigate("Student Payment System","/view/HomeForm.fxml",MainFormController.NAV_ICON_HOME);
-
-            }
-        });
+        ctrl.navigate(title, url, AppBarIcon.NAV_ICON_BACK, () -> ctrl.navigate("Student Payment System","/view/HomeForm.fxml",AppBarIcon.NAV_ICON_HOME));
     }
-
-
-
-
 }

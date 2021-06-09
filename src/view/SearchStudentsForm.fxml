@@ -1,8 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="616.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SearchStudentsFormController">
-
+<AnchorPane prefHeight="616.0" prefWidth="600.0" style="-fx-background-color: white;" stylesheets="@../css/SearchStudentFormStyles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SearchStudentsFormController">
+   <children>
+      <Label layoutX="223.0" layoutY="15.0" prefHeight="29.0" prefWidth="208.0" text="Search Students">
+         <font>
+            <Font name="Ubuntu Bold" size="24.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="48.0" fitWidth="48.0" layoutX="166.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../asset/Search%20Client.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="33.0" layoutY="76.0" prefHeight="51.0" prefWidth="534.0">
+         <children>
+            <TextField fx:id="txtQuery" accessibleText="Query" layoutX="-4.0" layoutY="24.0" prefHeight="26.0" prefWidth="184.0" promptText="Enter student name,NIC,contact or email" style="-fx-background-color: white;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="20.0" />
+         </children>
+      </AnchorPane>
+      <TableView fx:id="tblResults" layoutX="59.0" layoutY="177.0" prefHeight="436.0" prefWidth="580.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+        <columns>
+          <TableColumn prefWidth="143.0" text="NIC" />
+          <TableColumn prefWidth="176.0" text="Name" />
+            <TableColumn prefWidth="164.0" text="Address" />
+            <TableColumn prefWidth="96.0" />
+        </columns>
+      </TableView>
+   </children>
 </AnchorPane>

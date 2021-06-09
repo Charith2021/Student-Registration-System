@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import util.AppBarIcon;
 
 import java.io.IOException;
 
@@ -23,7 +24,7 @@ public class AppInitializer extends Application {
         Scene mainScene=new Scene(root);
         primaryStage.setScene(mainScene);
         MainFormController ctrl=fxmlLoader.getController();
-        ctrl.navigate("Student Management System","/view/HomeForm.fxml",MainFormController.NAV_ICON_HOME);
+        ctrl.navigate("Student Management System","/view/HomeForm.fxml", AppBarIcon.NAV_ICON_NONE);
         mainScene.setUserData(ctrl);
         mainScene.setFill(Color.TRANSPARENT); //making the scene transparent to make the gap visible
         primaryStage.initStyle(StageStyle.TRANSPARENT); //primary stage eke tamai close and minimize buttons tynne. a nisa eka transparent karala dala ape anchor pane eke anchor pane ekak dala eka blue karala task bar ekak api hada gattha
