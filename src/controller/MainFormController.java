@@ -41,55 +41,53 @@ public class MainFormController {
         navigate(title,url,icon,null);
     }
 
-
-
-    public  void  navigate(String title,String url,AppBarIcon icon,NavActionListener navActionListener){
-
-        try {
-            imgNavv.setVisible(true);
-            this.icon=icon;   ///methanin set karana icon eka uda hadapu variable(icon) eka athulata da gattha
-            this.navActionListener=navActionListener;
-            switch (icon){
-                case  NAV_ICON_NONE:
-                    imgNavv.setVisible(false);
-                    imgNavv.setUserData(null);  //danata hover ekak tyanam eka ayn krala danawa
-                    break;
-                case NAV_ICON_HOME:
-                    imgNavv.setImage(new Image("/asset/icons/home white.png"));
-                    imgNavv.setUserData(new Image("/asset/icons/home.png"));
-                    break;
-                case NAV_ICON_BACK:
-                    imgNavv.setImage(new Image("/asset/icons/arrow white.png"));
-                    imgNavv.setUserData(new Image("/asset/icons/arrow_back.png"));
-                break;
-            }
-
-
-
-
-          Parent  root = FXMLLoader.load(this.getClass().getResource(url));
-            pneStage.getChildren().clear();
-
-            FadeTransition ft=new FadeTransition(Duration.millis(250),pneStage);
-            ft.setFromValue(0);
-            ft.setToValue(1);
-
-            pneStage.getChildren().add(root);
-            ft.play();
-            lblTitle.setText(title);
-
-            Stage primaryStage =  (Stage) (pneStage.getScene().getWindow());
-
-            Platform.runLater(() -> {
-                primaryStage.sizeToScene();
-                primaryStage.centerOnScreen();
-            });
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public  void  navigate(String title,String url,AppBarIcon icon,NavActionListener navActionListener) {
+       navigate(title, url, icon, navActionListener,null);        //parana eka.ayeth break wela wdayak wena nisa mehema kre
     }
+    public void navigate(String title,String url,AppBarIcon icon,NavActionListener navActionListener,Object data){
+            try {
+                imgNavv.setVisible(true);
+                this.icon=icon;   ///methanin set karana icon eka uda hadapu variable(icon) eka athulata da gattha
+                this.navActionListener=navActionListener;
+                switch (icon){
+                    case  NAV_ICON_NONE:
+                        imgNavv.setVisible(false);
+                        imgNavv.setUserData(null);  //danata hover ekak tyanam eka ayn krala danawa
+                        break;
+                    case NAV_ICON_HOME:
+                        imgNavv.setImage(new Image("/asset/icons/home white.png"));
+                        imgNavv.setUserData(new Image("/asset/icons/home.png"));
+                        break;
+                    case NAV_ICON_BACK:
+                        imgNavv.setImage(new Image("/asset/icons/arrow white.png"));
+                        imgNavv.setUserData(new Image("/asset/icons/arrow_back.png"));
+                        break;
+                }
+
+
+
+
+                Stage primaryStage = (Stage) (pneStage.getScene().getWindow());
+                AnchorPane root = FXMLLoader.load(this.getClass().getResource(url));
+                root.setUserData(data);
+                FadeTransition ft = new FadeTransition(Duration.millis(750), root);
+
+                lblTitle.setText(title);
+                pneStage.getChildren().clear();
+                pneStage.getChildren().add(root);
+                ft.setFromValue(0.5);
+                ft.setToValue(1);
+                ft.play();
+                Platform.runLater(() -> {
+                    primaryStage.sizeToScene();
+                    primaryStage.centerOnScreen();
+                });
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
 
 
@@ -127,7 +125,7 @@ public class MainFormController {
 
         imgClose.setOnMouseEntered(event -> imgClose.setImage(new Image("asset/icons/close.png")));
         imgClose.setOnMouseExited(event -> imgClose.setImage(new Image("asset/icons/close-1.png")));
-        imgClose.setOnMouseClicked(event -> System.exit(0));
+        imgClose.setOnMouseClicked(event -> ((Stage) (imgClose.getScene().getWindow())).close());
         //Or
         // imgClose.setOnMouseClicked(event -> ((Stage)(imgClose.getScene().getWindow())).close());
 

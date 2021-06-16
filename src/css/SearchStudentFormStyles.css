@@ -40,3 +40,8 @@
 #tbl-results .table-cell:empty{
     -fx-border-color: transparent;
 }
+
+action-icons{
+    -fx-cursor: hand;
+}
+

@@ -11,14 +11,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="616.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StudentFormController">
+<AnchorPane fx:id="root" prefHeight="616.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StudentFormController">
    <children>
-      <Label layoutX="236.0" layoutY="31.0" text="Add new Student">
+      <Label fx:id="lblTitle" layoutX="236.0" layoutY="31.0" text="Add new Student">
          <font>
             <Font name="Ubuntu Bold" size="24.0" />
          </font>
       </Label>
-      <ImageView fitHeight="48.0" fitWidth="48.0" layoutX="178.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgLogo" fitHeight="48.0" fitWidth="48.0" layoutX="178.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../asset/Student%20Registration.png" />
          </image>
@@ -44,10 +44,10 @@
                <children>
                   <AnchorPane>
                      <children>
-                        <TextField fx:id="txtDob" accessibleText="DOB" prefHeight="26.0" prefWidth="286.0" promptText="e.g. 1983-11-25" style="-fx-background-color: white;" stylesheets="@../css/StudentFormStyles.css" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="20.0" />
+                        <TextField fx:id="txtDob" accessibleText="DOB" onKeyTyped="#txtDob_OnKeyTyped" prefHeight="26.0" prefWidth="286.0" promptText="e.g. 1983-11-25" style="-fx-background-color: white;" stylesheets="@../css/StudentFormStyles.css" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="20.0" />
                      </children>
                   </AnchorPane>
-                  <Label prefHeight="51.0" prefWidth="280.0" text="Enter DOB to display age">
+                  <Label fx:id="lblAge" prefHeight="51.0" prefWidth="280.0" text="Enter DOB to display age">
                      <padding>
                         <Insets left="10.0" right="10.0" />
                      </padding>
@@ -56,7 +56,7 @@
             </HBox>
             <AnchorPane layoutX="10.0" layoutY="163.0">
                <children>
-                  <TextField fx:id="txtMobile" accessibleText="Mobile No" prefHeight="26.0" prefWidth="286.0" promptText="e.g. 0761234567" style="-fx-background-color: white;" stylesheets="@../css/StudentFormStyles.css" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="20.0" />
+                  <TextField fx:id="txtMobile" accessibleText="Mobile No" onKeyTyped="#txtMobile_OnKeyTyped" prefHeight="26.0" prefWidth="286.0" promptText="e.g. 0761234567" style="-fx-background-color: white;" stylesheets="@../css/StudentFormStyles.css" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="20.0" />
                </children>
             </AnchorPane>
             <AnchorPane layoutX="10.0" layoutY="214.0">
@@ -66,6 +66,6 @@
             </AnchorPane>
          </children>
       </VBox>
-      <JFXButton alignment="CENTER" layoutX="226.0" layoutY="544.0" style="-fx-text-fill: #6200EE; -fx-border-color: #6200EE;" text="Add new student" />
+      <JFXButton fx:id="btnSave" alignment="CENTER" layoutX="226.0" layoutY="544.0" onAction="#btnSave_OnAction" style="-fx-text-fill: #6200EE; -fx-border-color: #6200EE;" text="Add new student" />
    </children>
 </AnchorPane>
