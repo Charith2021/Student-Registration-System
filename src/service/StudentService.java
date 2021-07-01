@@ -26,7 +26,7 @@ public class StudentService {
 
 
     public void saveStudent(Student student) throws DuplicateEntryException{
-        Student student1 = getStudent(student.getNic());   //parameter eken ena student ge nic eka aran student1 kiyana variable eke store kara ganna
+        Student student1 = getStudent(student.getNic());   //first see the get student method which is made by us//parameter eken ena student ge nic eka aran student1 kiyana variable eke store kara ganna
         if(student1 != null){
             throw new DuplicateEntryException();
         }
@@ -40,7 +40,7 @@ public class StudentService {
         studentsDB.set(index,student);
     }
 
-    public void deleteStudent(String nic) throws NotFoundException {
+    public static void deleteStudent(String nic) throws NotFoundException {
         Student student=findStudent(nic);
         studentsDB.remove(student);
     }
@@ -49,7 +49,8 @@ public class StudentService {
         return studentsDB;
     }
 
-    private Student getStudent(String nic){          //we made this private method.than kepayaka use wena nisa method ekakata gattha
+
+    private static Student getStudent(String nic){          //we made this private method.than kepayaka use wena nisa method ekakata gattha
         for (Student student : studentsDB) {
 
             if (student.getNic().equals(nic)){
@@ -60,7 +61,7 @@ public class StudentService {
     }
 
 
-    public Student findStudent(String nic) throws NotFoundException {
+    public static Student findStudent(String nic) throws NotFoundException {
         Student student = getStudent(nic);       //Student type eke student kiyana variable ekak athulata getStudent() method eka return karana value eka dagena
         if(student != null){
                 return student;

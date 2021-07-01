@@ -2,6 +2,8 @@ package model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Student implements Serializable {
     private String nic;
@@ -69,6 +71,16 @@ public class Student implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Map<String, String> toMap() {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("name", fullName);
+        map.put("address", address);
+        map.put("dob", dateOfBirth + "");
+        map.put("contact", contact);
+        map.put("email", email);
+        return map;
     }
 
     @Override

@@ -15,6 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import model.Student;
 import model.StudentTM;
 import service.StudentService;
+import service.StudentServiceRedisImpl;
 import service.exception.DuplicateEntryException;
 import service.exception.NotFoundException;
 import util.MaterialUI;
@@ -28,6 +29,7 @@ import java.time.Period;
 
 
 public class StudentFormController {
+    private final StudentServiceRedisImpl studentServiceRedis = new StudentServiceRedisImpl();
     public TextField txtNIC;
     public TextField txtFullName;
     public TextField txtAddress;
@@ -40,7 +42,7 @@ public class StudentFormController {
     public Label lblTitle;
     public ImageView imgLogo;
 
-    private StudentService studentService = new StudentService();  //composition nisa
+    private final StudentServiceRedisImpl studentService = new StudentServiceRedisImpl();  //composition nisa
 
     public void initialize() {
         MaterialUI.paintTextFields(new TextField[]{txtNIC, txtFullName, txtAddress, txtDob, txtMobile, txtMail});  //mixing
@@ -150,12 +152,11 @@ public class StudentFormController {
     }
 
     public void btnSave_OnAction(ActionEvent actionEvent) {
-
         try {
 
             if (!isValidated()) {
                 return;
-           }
+            }
 
             Student student = new Student(txtNIC.getText(),
                     txtFullName.getText(),
@@ -184,29 +185,29 @@ public class StudentFormController {
             }
             new Alert(Alert.AlertType.NONE, "Student has been saved successfully", ButtonType.OK).show();
         } catch (DuplicateEntryException e) {
-            new Alert(Alert.AlertType.ERROR, "A student already exists with the same NIC", ButtonType.OK).show();
+            new Alert(Alert.AlertType.ERROR, "A student already exits with the same NIC", ButtonType.OK).show();
             txtNIC.requestFocus();
         } catch (NotFoundException e) {
             e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR, "Something went wrong terribly.Please contact the DEPO", ButtonType.OK).show();
-
+            new Alert(Alert.AlertType.ERROR, "Something terribly went wrong, please contact DEPPO!", ButtonType.OK).show();
         }
+
     }
 
     private boolean isValidated() {
+
         String nic = txtNIC.getText();
         String fullName = txtFullName.getText();
         String address = txtAddress.getText();
         String dob = txtDob.getText();
-        String mobile = txtMobile.getText();
-        String mail = txtMail.getText();
+        String contact = txtMobile.getText();
+        String email = txtMail.getText();
 
         if (!((nic.length() == 10 && (nic.endsWith("V") || nic.endsWith("v")) && isInteger(nic.substring(0, 9)))
                 || (nic.length() == 12 && isInteger(nic)))) {
             new Alert(Alert.AlertType.ERROR, "Invalid NIC").show();
             txtNIC.requestFocus();
             return false;
-
         } else if (!(isValid(fullName, true, false) && fullName.trim().length() >= 3)) {
             new Alert(Alert.AlertType.ERROR, "Invalid Name. Name should contain at least 3 letters and can contain only alphabetic letters and spaces").show();
             txtFullName.requestFocus();
@@ -219,21 +220,19 @@ public class StudentFormController {
             new Alert(Alert.AlertType.ERROR, "Invalid DOB").show();
             txtDob.requestFocus();
             return false;
-        } else if (!(mobile.length() == 11 && isInteger(mobile.substring(0, 3)) && isInteger(mobile.substring(4, 11)))) {
+        } else if (!(contact.length() == 11 && isInteger(contact.substring(0, 3)) && isInteger(contact.substring(4, 11)))) {
             new Alert(Alert.AlertType.ERROR, "Invalid Contact Number").show();
             txtMobile.requestFocus();
             return false;
-        } else if (!isValidEmail(mail)) {
+        } else if (!isValidEmail(email)) {
             new Alert(Alert.AlertType.ERROR, "Invalid Email. Email can contain only letters, digits, periods and underscore.").show();
             txtMail.requestFocus();
             return false;
-
-        }else {
-            return false;
+        } else {
+            return true;
         }
-
-        }
-
-
+    }
 }
+
+
 

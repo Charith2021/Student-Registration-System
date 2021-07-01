@@ -34,19 +34,17 @@ public class HomeFormController {
         pneSearchStudents.setFocusTraversable(true);
     }
 
-
-    public void rprSearchStudents_OnKeyPressed(KeyEvent keyEvent) {
-        if(keyEvent.getCode() == KeyCode.ENTER ||keyEvent.getCode() == KeyCode.SPACE){
-            rprAddNewStudent.createManualRipple().run();
-        }
-
-    }
-
     public void rprAddNewStudent_OnKeyPressed(KeyEvent keyEvent) {
         if(keyEvent.getCode()==KeyCode.ENTER||keyEvent.getCode()==KeyCode.SPACE){
             rprSearchStudents.createManualRipple().run();
         }
 
+    }
+
+    public void rprSearchStudents_OnKeyPressed(KeyEvent keyEvent) {
+        if(keyEvent.getCode() == KeyCode.ENTER ||keyEvent.getCode() == KeyCode.SPACE){
+            rprAddNewStudent.createManualRipple().run();
+        }
     }
 
     public void pneAddNewStudent_OnMouseClicked(MouseEvent mouseEvent) throws IOException {

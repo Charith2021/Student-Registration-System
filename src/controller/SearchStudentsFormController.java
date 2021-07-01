@@ -18,6 +18,7 @@ import javafx.stage.StageStyle;
 import model.Student;
 import model.StudentTM;
 import service.StudentService;
+import service.StudentServiceRedisImpl;
 import service.exception.NotFoundException;
 import util.AppBarIcon;
 import util.MaterialUI;
@@ -29,7 +30,9 @@ import java.util.Optional;
 public class SearchStudentsFormController {
     public TextField txtQuery;
     public TableView<StudentTM> tblResults;
-    private StudentService studentService = new StudentService();  //composition nisa
+    StudentService studentService=new StudentService();
+
+    private final StudentServiceRedisImpl studentServiceRedis = new StudentServiceRedisImpl();
 
     public void initialize() {
         MaterialUI.paintTextFields(txtQuery);
@@ -60,7 +63,7 @@ public class SearchStudentsFormController {
         try {
             Optional<ButtonType> buttonType = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure to delete this student?", ButtonType.YES, ButtonType.NO).showAndWait();
             if (buttonType.get() == ButtonType.YES) {
-                studentService.deleteStudent(tm.getNic());
+                StudentService.deleteStudent(tm.getNic());
                 tblResults.getItems().remove(tm);
             }
         } catch (NotFoundException e) {
@@ -96,7 +99,7 @@ public class SearchStudentsFormController {
     private void loadAllStudents(String query) {
         tblResults.getItems().clear();
 
-        List<Student> searchResult;
+        List<Student> searchResult;   //okkoma fields search karanawane a nis TM newei danne. TM eke fields 3y tynne
         if (query == null || query.trim().isEmpty()) {
             searchResult = studentService.findAllStudents();
         } else {
