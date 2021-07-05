@@ -30,9 +30,9 @@ import java.util.Optional;
 public class SearchStudentsFormController {
     public TextField txtQuery;
     public TableView<StudentTM> tblResults;
-    StudentService studentService=new StudentService();
 
-    private final StudentServiceRedisImpl studentServiceRedis = new StudentServiceRedisImpl();
+    private StudentServiceRedisImpl studentServiceRedis = new StudentServiceRedisImpl();
+
 
     public void initialize() {
         MaterialUI.paintTextFields(txtQuery);
@@ -56,7 +56,7 @@ public class SearchStudentsFormController {
 
 
         txtQuery.textProperty().addListener((observable, oldValue, newValue) -> loadAllStudents(newValue));
-        loadAllStudents(null);
+        loadAllStudents("");
     }
 
     private void deleteStudent(StudentTM tm) {
@@ -99,14 +99,7 @@ public class SearchStudentsFormController {
     private void loadAllStudents(String query) {
         tblResults.getItems().clear();
 
-        List<Student> searchResult;   //okkoma fields search karanawane a nis TM newei danne. TM eke fields 3y tynne
-        if (query == null || query.trim().isEmpty()) {
-            searchResult = studentService.findAllStudents();
-        } else {
-            searchResult = studentService.findStudents(query);
-        }
-
-        for (Student student : searchResult) {
+        for (Student student : studentServiceRedis.findStudents(query)) {
             tblResults.getItems().add(new StudentTM(student.getNic(), student.getFullName(), student.getAddress()));
         }
     }

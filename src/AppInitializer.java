@@ -8,13 +8,19 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import redis.clients.jedis.Jedis;
 import util.AppBarIcon;
+import util.JedisClient;
 
 import java.io.IOException;
 
 public class AppInitializer extends Application {
 
     public static void main(String[] args) {
+
+    Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+        JedisClient.getInstance().getClient().shutdown();
+    }));
         launch(args);
     }
 

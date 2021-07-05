@@ -19,7 +19,7 @@ import service.StudentServiceRedisImpl;
 import service.exception.DuplicateEntryException;
 import service.exception.NotFoundException;
 import util.MaterialUI;
-import static util.ValidationUtil.*;     //meka damme nathnam isInteger(); method eka mehema call karann ba. Validation.utilisInteger(); kiyala call krnna wnne
+import static util.ValidationUtil.*;     //meka damme nathnam isInteger(); method eka mehema call karann ba. Validation.util.isInteger(); kiyala call krnna wnne
 
 import java.text.*;
 import java.time.LocalDate;
@@ -29,7 +29,7 @@ import java.time.Period;
 
 
 public class StudentFormController {
-    private final StudentServiceRedisImpl studentServiceRedis = new StudentServiceRedisImpl();
+
     public TextField txtNIC;
     public TextField txtFullName;
     public TextField txtAddress;

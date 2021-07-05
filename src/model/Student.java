@@ -25,6 +25,17 @@ public class Student implements Serializable {
         this.email = email;
     }
 
+    public static Student fromMap(String nic, Map<String, String> data) {
+        return new Student(
+                nic,
+                data.get("name"),
+                data.get("address"),
+                LocalDate.parse(data.get("dob")),
+                data.get("contact"),
+                data.get("email")
+        );
+    }
+
     public String getNic() {
         return nic;
     }
